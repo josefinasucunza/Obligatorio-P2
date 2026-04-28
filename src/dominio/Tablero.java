@@ -1,100 +1,73 @@
-
 package dominio;
-
 
 public class Tablero {
 
+    private char[][] matriz;
 
     public static void main(String[] args) {
-        
-        mostrarTablero(TableroDefault());
-    
+        Tablero t = new Tablero();
+        /*System.out.println(t.prepararTablero());*/
     }
-    public static String[][] TableroDefault(){
-        
-        String[][] mat = new String[17][41];
-        for (int i = 0; i < mat.length; i++) {
-            for (int j = 0; j < mat[0].length; j++) {
-                
-                if (i % 2 == 0) {
-                    if (j % 4 == 0) {
-                        mat[i][j] = ("+");
-                    } else {
-                        mat[i][j] = ("-");
-                    }
+
+    public Tablero() {
+        this.matriz = tableroDefault();
+    }
+
+    private char[][] tableroDefault() {
+        char[][] m = new char[8][10];
+        for (int i = 0; i < 8; i++)
+            for (int j = 0; j < 10; j++)
+                m[i][j] = 'V';
+
+        // negras
+        m[0][2] = 'N'; m[0][3] = 'N'; m[0][6] = 'N'; m[0][7] = 'N';
+        for (int j = 0; j < 10; j++) m[1][j] = 'N';
+        m[2][0] = 'N'; m[2][1] = 'N'; m[2][4] = 'N'; m[2][5] = 'N'; m[2][8] = 'N'; m[2][9] = 'N';
+
+        // blancas
+        m[5][0] = 'B'; m[5][1] = 'B'; m[5][4] = 'B'; m[5][5] = 'B'; m[5][8] = 'B'; m[5][9] = 'B';
+        for (int j = 0; j < 10; j++) m[6][j] = 'B';
+        m[7][2] = 'B'; m[7][3] = 'B'; m[7][6] = 'B'; m[7][7] = 'B';
+
+        return m;
+    }
+
+    public void cargarDefault() {
+        this.matriz = tableroDefault();
+    }
+
+    public void cargarMatriz(String[] filas) {
+        for (int i = 0; i < 8; i++)
+            for (int j = 0; j < 10; j++)
+                matriz[i][j] = Character.toUpperCase(filas[i].charAt(j));
+    }
+
+    /*public String prepararTablero() {
+        String separador = "+---+---+---+---+---+---+---+---+---+---+";
+        String resultado = "";
+
+        for (int i = 0; i < 8; i++) {
+            resultado += separador + "\n";
+            resultado += "|";
+            for (int j = 0; j < 10; j++) {
+                if (matriz[i][j] == 'V') {
+                    resultado += "   |";
                 } else {
-                    if (j % 4 == 0) {
-                        mat[i][j] = ("|");
-                    } else{
-                        mat[i][j] = " ";
-                        }
+                    resultado += " " + matriz[i][j] + " |";
                 }
             }
+            resultado += "\n";
         }
-        for (int i = 1; i < 9 ; i = i+2) {
-            for (int j = 2; j < mat[0].length; j = j+4) {
-                if (i==1 && j >= 10 && mat[i][j-4].equalsIgnoreCase(" ") && mat[i][j-8].equalsIgnoreCase(" ")) {
-                    mat[i][j] = "N";
-                    mat[i][j+4] = "N";
-                }
-                if (i == 3) {
-                    mat[i][j] = "N";
-                }
-                if (i == 5 && j<mat[0].length-3) {
-                   
-                    if (j>=10 && (((mat[i][j-4].equalsIgnoreCase("N")) && (mat[i][j-8].equalsIgnoreCase("N"))) 
-                              || ((mat[i][j-4].equalsIgnoreCase(" ")) && (mat[i][j-8].equalsIgnoreCase("N"))))) {
-                        mat[i][j] = " "; 
-                        mat[i][j+4] = " ";
-                    }else{
-                        mat[i][j] = "N";
-                        mat[i][j+4] = "N";
-                    }
-                   
-                }
-            }
-        }
-        for (int i = 9; i < mat.length; i = i+2) {
-            for (int j = 2; j < mat[0].length; j = j+4) {
-                if (i == 11 && j<mat[0].length-3) {
-                   
-                    if (j>=10 && (((mat[i][j-4].equalsIgnoreCase("B")) && (mat[i][j-8].equalsIgnoreCase("B"))) 
-                              || ((mat[i][j-4].equalsIgnoreCase(" ")) && (mat[i][j-8].equalsIgnoreCase("B"))))) {
-                        mat[i][j] = " "; 
-                        mat[i][j+4] = " ";
-                    }else{
-                        mat[i][j] = "B";
-                        mat[i][j+4] = "B";
-                    }
-                   
-                }
-                if (i == 13) {
-                    mat[i][j] = "B";
-                }
-                if (i==15 && j >= 10 && mat[i][j-4].equalsIgnoreCase(" ") && mat[i][j-8].equalsIgnoreCase(" ")) {
-                    mat[i][j] = "B";
-                    mat[i][j+4] = "B";
-                }
-            }
-        }
-              
-        return mat;
+        resultado += separador;
+
+        return resultado;
+    }*/
+
+    public char[][] getMatriz() {
+        return matriz;
     }
 
-    public static void mostrarTablero(String[][] mat) {
-
-        for (int i = 0; i < mat.length; i++) {
-            System.out.println();
-            for (int j = 0; j < mat[0].length; j++) {
-                System.out.print(mat[i][j]);
-
-            }
-        }
-        
+    public void setMatriz(char[][] m) {
+        this.matriz = m;
     }
-    
-    
-    
-    
-    
 }
