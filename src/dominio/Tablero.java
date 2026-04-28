@@ -93,17 +93,6 @@ public class Tablero {
         
     }
     
-    public static void colocarEn(int x, int y){
-         
-        
-        
     
-    
-    }
-    public static void ponerFichasDefault(){
-        
-    
-    
-    }
     
 }
