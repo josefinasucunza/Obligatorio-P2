@@ -6,7 +6,7 @@ public class Tablero {
 
     public static void main(String[] args) {
         Tablero t = new Tablero();
-        /*System.out.println(t.prepararTablero());*/
+        System.out.println(t.prepararTablero());
     }
 
     public Tablero() {
@@ -42,7 +42,7 @@ public class Tablero {
                 matriz[i][j] = Character.toUpperCase(filas[i].charAt(j));
     }
 
-    /*public String prepararTablero() {
+    public String prepararTablero() {
         String separador = "+---+---+---+---+---+---+---+---+---+---+";
         String resultado = "";
 
@@ -61,7 +61,7 @@ public class Tablero {
         resultado += separador;
 
         return resultado;
-    }*/
+    }
 
     public char[][] getMatriz() {
         return matriz;
